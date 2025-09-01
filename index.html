@@ -542,12 +542,30 @@ table tbody td:nth-child(n+17):nth-child(-n+23) {
 }
 #chartsContainer {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 per row */
+  grid-template-columns: repeat(3, 1fr); /* 2 per row */
   gap: 20px;  /* spacing between charts */
   margin-top: 20px;
 }
 
 
+.charts-section {
+  margin-top: 40px;
+}
+
+.charts-heading {
+  font-size: 35px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 50px;
+  color: #bfc6d4;
+  background-color: #000007;
+}
+
+#chartsContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* two per row */
+  gap: 20px;
+}
 
 
 </style>
@@ -644,9 +662,13 @@ table tbody td:nth-child(n+17):nth-child(-n+23) {
 
       <div class="pager" id="pager"></div>
     </div>
-    <!-- Charts Section -->
-<!-- ====== Charts Section ====== -->
-<div id="chartsContainer" style="margin-top:30px; display:grid; grid-template-columns:repeat(auto-fill,minmax(400px,1fr)); gap:20px;"></div>
+    <!-- ====== Charts Section ====== -->
+<div class="charts-section">
+  <h2 class="charts-heading">
+    Comparison of Average Time taken to clear a single file
+  </h2>
+  <div id="chartsContainer"></div>
+</div>
 
 
   </main>
