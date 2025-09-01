@@ -282,42 +282,9 @@ main { margin-top: 8px; display:grid; grid-template-columns: 1fr; gap:18px; }
   }
 }
 
-
-/* Table card */
-.table-card {
-  border-radius:14px; 
-  padding:12px;
-  background: #ffffff;
-  border:1px solid var(--glass-border);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  overflow-x: auto; /* enable horizontal scrolling */
-}
-
-.table-controls { 
-  display:flex; 
-  gap:10px; 
-  align-items:center; 
-  margin-bottom:10px; 
-  justify-content:space-between; 
-}
-
-.search { 
-  padding:10px 12px; 
-  border-radius:10px; 
-  border:1px solid #ccc; 
-  background:#fff; 
-  color:var(--text); 
-  width:320px; 
-}
-
-.table-wrap { 
-  max-height:420px; 
-  overflow-y:auto; 
-  overflow-x:auto; /* allow horizontal scroll */
-  border-radius:10px; 
-}
-
-/* Table card */
+/* ================================
+   Table Card & Controls
+=================================== */
 .table-card {
   border-radius: 16px;
   padding: 16px;
@@ -327,12 +294,12 @@ main { margin-top: 8px; display:grid; grid-template-columns: 1fr; gap:18px; }
   overflow-x: auto;
 }
 
-/* Controls */
 .table-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
+  gap: 10px;
 }
 
 .search {
@@ -359,15 +326,19 @@ main { margin-top: 8px; display:grid; grid-template-columns: 1fr; gap:18px; }
   font-weight: 500;
 }
 
-/* Table wrapper */
+/* ================================
+   Table Wrapper
+=================================== */
 .table-wrap {
-  max-height: 840px;
+  max-height: 500px;
   overflow-y: auto;
   border-radius: 12px;
   border: 1px solid #eee;
 }
 
-/* Table */
+/* ================================
+   Table
+=================================== */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -378,6 +349,7 @@ table {
 thead th {
   position: sticky;
   top: 0;
+  z-index: 20;               /* always above body cells */
   background: #111827;
   color: #f7f1bd;
   padding: 12px;
@@ -385,7 +357,6 @@ thead th {
   font-size: 13px;
   font-weight: 600;
   border-bottom: 2px solid #e5e7eb;
-  z-index: 2;
   letter-spacing: 0.3px;
 }
 
@@ -399,8 +370,6 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
   background: #fef9c3;
   transform: scale(1.01);
-  border: #03010f;
-  border-width: 50px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   z-index: 5;
 }
@@ -412,21 +381,90 @@ td {
   white-space: nowrap;
 }
 
-.col-emp {
-  font-weight: 700;
+/* ================================
+   Sticky Columns
+=================================== */
+/* Sticky first column (header + body) */
+table th:first-child,
+table td:first-child {
+  position: sticky;
+  left: 0;
+  width: 250px;
+  background: #111827;
   color: #f7f1bd;
   text-align: left;
-  
+  box-shadow: 2px 0 6px rgba(0,0,0,0.05);
 }
 
-/* Sorting indicator */
+/* Make sure header cell of col1 is above its body cells */
+table th:first-child {
+  z-index: 30;    /* higher than td:first-child */
+}
+table td:first-child {
+  z-index: 10;
+}
+
+/* Sticky second column (header + body) */
+table th:nth-child(2),
+table td:nth-child(2) {
+  position: sticky;
+  left: 45px; /* must equal first col width */
+  width: 150px;
+  background: #111827;
+  color: #f7f1bd;
+  text-align: center;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.05);
+}
+
+/* Ensure header of col2 stays above body */
+table th:nth-child(2) {
+  z-index: 25;    /* above body but below col1 header */
+}
+table td:nth-child(2) {
+  z-index: 15;
+}
+/* ================================
+   Column Coloring
+=================================== */
+table tbody td:nth-child(2) {
+  font-weight: 700;
+}
+
+table tbody td:nth-child(3) {
+  color: #bd0505;
+  font-weight: 700;
+  background: #c9ecf7;
+}
+table tbody td:nth-child(4) {
+  color: #1a0101;
+  font-weight: 700;
+  background: #c9ecf7;
+}
+table tbody td:nth-child(n+5):nth-child(-n+10) {
+  color: #0a0101;
+  font-weight: 700;
+  background: #f5f7a5a4;
+}
+table tbody td:nth-child(n+11):nth-child(-n+16) {
+  color: #1a0101;
+  font-weight: 700;
+  background: #a5fac191;
+}
+table tbody td:nth-child(n+17):nth-child(-n+23) {
+  color: #1a0101;
+  font-weight: 700;
+  background: #f3cda285;
+}
+
+/* ================================
+   Sorting & Pagination
+=================================== */
 .sort-ind {
   margin-left: 6px;
   font-size: 11px;
   opacity: 0.8;
 }
 
-/* Pagination */
 .pager {
   display: flex;
   gap: 6px;
@@ -455,71 +493,6 @@ td {
   border-color: #111827;
 }
 
-/* Sticky first column */
-table th:first-child,
-table td:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 3;
-  background: #111827;
-  box-shadow: 2px 0 6px rgba(0,0,0,0.05);
-  text-align: center;
-  width: 250px;
-}
-/* Sticky second column */
-table thead th:nth-child(2),
-table tbody td:nth-child(2) {
-  position: sticky;
-  left: 45px;  /* same as first column width */
-  z-index: 2;
-  background: #111827; /* match your theme */
-  box-shadow: 2px 0 6px rgba(0,0,0,0.05);
-}
-
-/* First column body cells left aligned */
-table tbody td:first-child {
-  text-align: left;
-}
-/* Sticky header row */
-thead th {
-  top: 0;
-  z-index: 2;
-}
-thead th:first-child {
-  z-index: 5;
-}
-table tbody td:nth-child(2) {
-  color: #f7f1bd;   /* red */
-  font-weight: 700; /* bold */
-  background: #111827;
-}
-/* Only 5th column body cells */
-table tbody td:nth-child(3) {
-  color: #bd0505;   /* red */
-  font-weight: 700; /* bold */
-  background: #c9ecf7;
-}
-table tbody td:nth-child(4) {
-  color: #1a0101;   /* red */
-  font-weight: 700; /* bold */
-  background: #c9ecf7;
-}
-table tbody td:nth-child(n+5):nth-child(-n+10) {
-  color: #0a0101;   /* red */
-  font-weight: 700; /* bold */
-  background: #f5f7a5a4;
-}
-table tbody td:nth-child(n+11):nth-child(-n+16) {
-  color: #1a0101;   /* red */
-  font-weight: 700; /* bold */
-  background: #a5fac191;
-}
-
-table tbody td:nth-child(n+17):nth-child(-n+23) {
-  color: #1a0101;   /* red */
-  font-weight: 700; /* bold */
-  background: #f3cda285;
-}
 /* small screens */
 @media (max-width:1000px){
   .widgets { grid-template-columns: repeat(2,1fr); }
