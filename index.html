@@ -466,6 +466,15 @@ table td:first-child {
   text-align: center;
   width: 250px;
 }
+/* Sticky second column */
+table thead th:nth-child(2),
+table tbody td:nth-child(2) {
+  position: sticky;
+  left: 45px;  /* same as first column width */
+  z-index: 2;
+  background: #111827; /* match your theme */
+  box-shadow: 2px 0 6px rgba(0,0,0,0.05);
+}
 
 /* First column body cells left aligned */
 table tbody td:first-child {
