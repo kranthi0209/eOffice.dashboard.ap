@@ -13,7 +13,7 @@
   --bg-1: #adbef7; /* pale indigo tint */
 
   /* Panels / cards */
-  --panel: #ffffffcc;
+  --panel: #6d1111cc;
   --glass: rgba(255,255,255,0.7);
   --glass-border: rgba(0,0,0,0.08);
 
@@ -63,7 +63,7 @@ header {
   justify-content: center;
   padding: 24px 20px;
 
-  background: linear-gradient(90deg, #636466, #282b2b);
+  background: linear-gradient(90deg, #080f1f, #282b2b);
   border-radius: 0 0 14px 14px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.12);
 }
@@ -101,7 +101,7 @@ header {
   display: block;
   font-weight: 700;
   font-size: 28px;
-  color: #FFEB3B;
+  color: #83827f;
 }
 
 .subtitle {
@@ -114,14 +114,14 @@ header {
 /* Capsule tabs */
 .capsule-tabs {
   display:flex; gap:8px; position:relative; padding:6px;
-  background: #020511;
+  background: #f5eaac;
   border-radius:32px; border:1px solid var(--glass-border);
 }
 .capsule-tabs .tab {
-  padding:8px 16px; border-radius:30px; cursor:pointer; color:whitesmoke; font-weight:600;
+  padding:8px 16px; border-radius:30px; cursor:pointer; color:rgb(15, 1, 1); font-weight:600;
   font-size:18px; white-space:nowrap; transition: all .22s cubic-bezier(.2,.9,.3,1);font-weight: bolder;
 }
-.capsule-tabs .tab:hover { transform: translateY(-3px) scale(1.02); color:rgb(26, 248, 5); }
+.capsule-tabs .tab:hover { transform: translateY(-3px) scale(1.02); color:rgb(228, 7, 7); }
 .capsule-indicator {
   position:absolute; top:6px; left:6px; height:calc(100% - 12px); border-radius:30px;
   background: linear-gradient(90deg, #5802022f, rgba(41, 1, 3, 0.562));
@@ -138,9 +138,9 @@ header {
 /* subtabs capsule */
 .capsule-sub { display:flex; gap:8px; margin: 18px 0 6px 0; align-items:center; }
 .capsule-sub .tab {
-  padding:7px 12px; font-size:16px; border-radius:20px; background:#020511; border:1px solid #ddd; color:rgb(235, 234, 240);font-weight: bolder;
+  padding:7px 12px; font-size:16px; border-radius:20px; background:#ebf0aa; border:1px solid #ddd; color:rgb(12, 3, 59);font-weight: bolder;
 }
-.capsule-sub .tab:hover { transform: translateY(-3px) scale(1.02); color:rgb(26, 248, 5); }
+.capsule-sub .tab:hover { transform: translateY(-3px) scale(1.02); color:rgb(105, 8, 8); }
 .capsule-sub .tab.active {
   background: linear-gradient(90deg, #20cb75, #20cb75);
   color:rgb(19, 1, 1); border-color: transparent;
@@ -157,20 +157,20 @@ main { margin-top: 8px; display:grid; grid-template-columns: 1fr; gap:18px; }
   min-height:96px; position:relative; overflow:hidden;
   transition: transform .18s ease, box-shadow .18s ease;
 }
-.widget:nth-child(1) { background: linear-gradient(135deg, #111827, #1e293b); color:#fff; }
-.widget:nth-child(2) { background: linear-gradient(135deg,  #111827, #1e293b); color:#fff; }
-.widget:nth-child(3) { background: linear-gradient(135deg, #111827, #1e293b); color:#fff; }
-.widget:nth-child(4) { background: linear-gradient(135deg, #111827, #1e293b); color:#fff; }
-.widget:nth-child(5) { background: linear-gradient(135deg, #111827, #1e293b); color:#fff; }
-.widget:nth-child(6) { background: linear-gradient(135deg, #111827, #1e293b); color:#fff; }
-.widget:nth-child(7) { background: linear-gradient(135deg, #111827, #1e293b); color:#fff; }
-.widget:nth-child(8) { background: linear-gradient(135deg, #111827, #1e293b); color:#fff; }
+.widget:nth-child(1) { background: linear-gradient(135deg, #ece9379d, #cee0be); color:#fff; }
+.widget:nth-child(2) { background: linear-gradient(135deg, #ece9379d, #cee0be); color:#fff; }
+.widget:nth-child(3) { background: linear-gradient(135deg, #ece9379d, #cee0be); color:#fff; }
+.widget:nth-child(4) { background: linear-gradient(135deg, #ece9379d, #cee0be); color:#fff; }
+.widget:nth-child(5) { background: linear-gradient(135deg, #ece9379d, #cee0be); color:#fff; }
+.widget:nth-child(6) { background: linear-gradient(135deg, #ece9379d, #cee0be); color:#fff; }
+.widget:nth-child(7) { background: linear-gradient(135deg, #ece9379d, #cee0be); color:#fff; }
+.widget:nth-child(8) { background: linear-gradient(135deg, #ece9379d, #cee0be); color:#fff; }
 
 .widget:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(0,0,0,0.25); }
-.widget .title { color:#e2e8f0; font-size:13px; margin-bottom:6px; font-weight:700; }
-.widget .value { font-size:22px; font-weight:800; color:#deec0f; display:flex; gap:10px; align-items:center; }
+.widget .title { color:#033301; font-size:13px; margin-bottom:6px; font-weight:700; }
+.widget .value { font-size:22px; font-weight:800; color:#420202; display:flex; gap:10px; align-items:center; }
 .widget .value i { font-size:20px; background:linear-gradient(135deg,var(--accent-c),var(--accent-e)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-.widget .sub { color:#07df4f; font-size:12px; margin-top:6px; }
+.widget .sub { color:#060336; font-size:12px; margin-top:6px;font-weight: 800; }
 
 /* circular progress mini */
 .ring {
@@ -188,7 +188,7 @@ main { margin-top: 8px; display:grid; grid-template-columns: 1fr; gap:18px; }
   display: flex;
   flex-direction: column;
   gap: 6px;
-  color: #fff; /* ensure contrast */
+  color: #180202; /* ensure contrast */
 }
 
 .chip small {
@@ -216,39 +216,36 @@ main { margin-top: 8px; display:grid; grid-template-columns: 1fr; gap:18px; }
 
 /* ✅ Processed buckets */
 
-.chip.p1    { background: rgba(58, 150, 96, 0.897); border-left: 8px solid #032411; }
-.chip-bar-fill.p1   { background: #072e17; }
-.chip.p2    { background: rgba(58, 150, 96, 0.897); border-left: 8px solid #032411; }
+.chip.p1    { background: rgba(133, 236, 176, 0.404); border-left: 8px solid #032411; }
+.chip-bar-fill.p1   { background: #023618; }
+.chip.p2    { background: rgba(133, 236, 176, 0.404); border-left: 8px solid #032411; }
 .chip-bar-fill.p2   { background: #072e17; }
-.chip.p3    { background: rgba(58, 150, 96, 0.897); border-left: 8px solid #032411; }
+.chip.p3    { background: rgba(133, 236, 176, 0.404); border-left: 8px solid #032411; }
 .chip-bar-fill.p3   { background: #072e17; }
-.chip.p1w    { background: rgba(58, 150, 96, 0.897); border-left: 8px solid #032411; }
+.chip.p1w    { background: rgba(133, 236, 176, 0.404); border-left: 8px solid #032411; }
 .chip-bar-fill.p1w  { background: #072e17; }
-.chip.p1m    { background: rgba(58, 150, 96, 0.897); border-left: 8px solid #032411; }
+.chip.p1m    { background: rgba(133, 236, 176, 0.404); border-left: 8px solid #032411; }
 .chip-bar-fill.p1m   { background: #072e17; }
-.chip.pgt1m    { background: rgba(58, 150, 96, 0.897); border-left: 8px solid #032411; }
+.chip.pgt1m    { background: rgba(133, 236, 176, 0.404); border-left: 8px solid #032411; }
 .chip-bar-fill.pgt1m   { background: #072e17; }
 
 /* ✅ Pending buckets */
-.chip.pending_lt7   { background: rgba(151, 31, 37, 0.911); border-left: 8px solid #2e0305; }
-.chip-bar-fill.pending_lt7   { background: #2e0305; }
-
-.chip.pending_ge7   { background: rgba(151, 31, 37, 0.911); border-left: 8px solid #2e0305; }
+.chip.pending_ge7   { background: rgba(235, 136, 141, 0.678); border-left: 8px solid #2e0305; }
 .chip-bar-fill.pending_ge7   { background: #2e0305; }
 
-.chip.pending_ge15  { background: rgba(151, 31, 37, 0.911); border-left: 8px solid #2e0305; }
+.chip.pending_ge15  { background: rgba(235, 136, 141, 0.678); border-left: 8px solid #2e0305; }
 .chip-bar-fill.pending_ge15  { background: #2e0305; }
 
-.chip.pending_ge30  { background: rgba(151, 31, 37, 0.911); border-left: 8px solid #2e0305; }
+.chip.pending_ge30  { background: rgba(235, 136, 141, 0.678); border-left: 8px solid #2e0305; }
 .chip-bar-fill.pending_ge30  { background: #2e0305; }
 
-.chip.pending_ge60  { background: rgba(151, 31, 37, 0.911); border-left: 8px solid #2e0305; }
+.chip.pending_ge60  { background: rgba(235, 136, 141, 0.678); border-left: 8px solid #2e0305; }
 .chip-bar-fill.pending_ge60  { background: #2e0305; }
 
-.chip.pending_ge90  { background: rgba(151, 31, 37, 0.911); border-left: 8px solid #2e0305; }
+.chip.pending_ge90  { background: rgba(235, 136, 141, 0.678); border-left: 8px solid #2e0305; }
 .chip-bar-fill.pending_ge90  { background: #2e0305; }
 
-.chip.pending_ge120 { background: rgba(151, 31, 37, 0.911); border-left: 8px solid #2e0305; }
+.chip.pending_ge120 { background: rgba(235, 136, 141, 0.678); border-left: 8px solid #2e0305; }
 .chip-bar-fill.pending_ge120 { background: #2e0305; }
 /* Chip container (processedChips & pendingChips) */
 #processedChips, #pendingChips {
@@ -350,12 +347,12 @@ thead th {
   position: sticky;
   top: 0;
   z-index: 20;               /* always above body cells */
-  background: #111827;
-  color: #f7f1bd;
+  background: #c8c8cc;
+  color: #02011b;
   padding: 12px;
   text-align: left;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 900;
   border-bottom: 2px solid #e5e7eb;
   letter-spacing: 0.3px;
 }
@@ -368,7 +365,7 @@ tbody tr:nth-child(even) {
   background: #fafafa;
 }
 tbody tr:hover {
-  background: #fef9c3;
+  background: #d5dbd5e0;
   transform: scale(1.01);
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   z-index: 5;
@@ -390,8 +387,8 @@ table td:first-child {
   position: sticky;
   left: 0;
   width: 250px;
-  background: #111827;
-  color: #f7f1bd;
+  background: #c8c8cc;
+  color: #02011b;
   text-align: left;
   box-shadow: 2px 0 6px rgba(0,0,0,0.05);
 }
@@ -410,8 +407,8 @@ table td:nth-child(2) {
   position: sticky;
   left: 45px; /* must equal first col width */
   width: 150px;
-  background: #111827;
-  color: #f7f1bd;
+  background: #c8c8cc;
+  color: #02011b;
   text-align: left;
   box-shadow: 2px 0 6px rgba(0,0,0,0.05);
 }
@@ -433,27 +430,28 @@ table tbody td:nth-child(2) {
 table tbody td:nth-child(3) {
   color: #bd0505;
   font-weight: 700;
-  background: #c9ecf7;
+  background: #8bddf744;
 }
+
 table tbody td:nth-child(4) {
   color: #1a0101;
   font-weight: 700;
-  background: #c9ecf7;
+  background: #8bddf744;
 }
 table tbody td:nth-child(n+5):nth-child(-n+10) {
   color: #0a0101;
   font-weight: 700;
-  background: #f5f7a5a4;
+  background: #f6f7a53b;
 }
 table tbody td:nth-child(n+11):nth-child(-n+16) {
   color: #1a0101;
   font-weight: 700;
-  background: #a5fac191;
+  background: #a5fac14f;
 }
 table tbody td:nth-child(n+17):nth-child(-n+23) {
   color: #1a0101;
   font-weight: 700;
-  background: #f3cda285;
+  background: #f3cda23a;
 }
 
 /* ================================
@@ -513,6 +511,44 @@ table tbody td:nth-child(n+17):nth-child(-n+23) {
 #resetBtn {
   display: none;
 }
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.chart-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  position: relative;
+}
+
+.chart-title {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e0e991;
+  color: #041d00;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 16px;
+  width: 300px;
+  text-align: center;
+}
+#chartsContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 per row */
+  gap: 20px;  /* spacing between charts */
+  margin-top: 20px;
+}
+
+
+
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -577,7 +613,7 @@ table tbody td:nth-child(n+17):nth-child(-n+23) {
         <table id="empTable" role="table">
           <thead>
             <tr>
-              <th style="width:60px; text-align:center;">S. No.</th>
+              <th style="width:60px; text-align:center;color: #000007;">S. No.</th>
               <th data-key="Employee">Employee <span class="sort-ind">↕</span></th>
               <th data-key="Avg Time (mins)">Avg Time for a File<span class="sort-ind">↕</span></th>
               <th data-key="Median Time (mins)">Median for a File (mins)<span class="sort-ind">↕</span></th>
@@ -608,7 +644,11 @@ table tbody td:nth-child(n+17):nth-child(-n+23) {
 
       <div class="pager" id="pager"></div>
     </div>
-    
+    <!-- Charts Section -->
+<!-- ====== Charts Section ====== -->
+<div id="chartsContainer" style="margin-top:30px; display:grid; grid-template-columns:repeat(auto-fill,minmax(400px,1fr)); gap:20px;"></div>
+
+
   </main>
 </div>
 
@@ -803,6 +843,7 @@ function renderActiveView(){
   renderBuckets(rows);
   renderTable(rows);
   updateTableInfo();
+  
 }
 
 /* animate number */
@@ -985,7 +1026,7 @@ function renderTable(rows){
   pageRows.forEach((r, i)=>{
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td style="text-align:center;font-weight:600;color: #f7f1bd;">${start + i + 1}</td>
+      <td style="text-align:center;font-weight:800;color: #02011b;">${start + i + 1}</td>
       <td class="col-emp">${escapeHtml(r._employee)}</td>
       <td>${formatMinutes(r._avg)}</td>
       <td>${formatMinutes(r._median)}</td>
@@ -1013,6 +1054,8 @@ function renderTable(rows){
 
   renderPager(filtered.length,pageSize,page);
   tableInfo.textContent = `${filtered.length} employees (${pageRows.length} shown)`;
+  // 🔹 Build charts ONLY for the employees visible on this page
+  renderCharts(pageRows);
 }
 
 
@@ -1246,12 +1289,112 @@ function svgMedianProcessingTime() {
 }
 
 
-function setActiveOffice(o){
-  activeOffice = o;
-  [...subTabsContainer.querySelectorAll('.tab')].forEach(t=> t.classList.toggle('active', t.textContent===o));
-  renderActiveView();
-  renderCharts(); // <-- add this
+
+
+function renderCharts(pageRows) {
+  const container = document.getElementById("chartsContainer");
+  container.innerHTML = "";
+  if (!pageRows || !pageRows.length) return;
+
+  // Employees currently displayed in the table (this page)
+  const employeesOnPage = [...new Set(pageRows.map(r => r._employee))];
+
+  // Scope dataset for those employees; respect activeOffice if selected
+  const scoped = normalized.filter(r =>
+    employeesOnPage.includes(r._employee) &&
+    (!activeOffice || r._office === activeOffice)
+  );
+
+  // All periods available for this scope
+  let allPeriods = [...new Set(scoped.map(r => r._period))];
+
+  // 🔹 Move "Entire Period" to the end
+  allPeriods.sort((a, b) => {
+    if (a === "Entire Period") return 1;
+    if (b === "Entire Period") return -1;
+    return 0;
+  });
+
+  // Group rows by employee
+  const byEmp = {};
+  scoped.forEach(r => {
+    (byEmp[r._employee] ||= []).push(r);
+  });
+
+  // 🔹 Build charts in the same order as the table
+  const seen = new Set();
+  pageRows.forEach(row => {
+    const emp = row._employee;
+    if (seen.has(emp)) return; // skip duplicates
+    seen.add(emp);
+
+    const empRows = byEmp[emp] || [];
+
+    // Compute averages across all periods
+    const averages = allPeriods.map(p => {
+      const periodRows = empRows.filter(r => r._period === p);
+      return meanWeighted(periodRows, r => r._avg, r => r._processed);
+    });
+
+    // Create chart card
+    const card = document.createElement("div");
+    card.className = "chart-card";
+    card.innerHTML = `
+  <div class="chart-title">${emp}</div>
+  <div style="height:300px">
+    <canvas></canvas>
+  </div>
+`;
+
+    container.appendChild(card);
+
+    // Initialize Chart.js
+    new Chart(card.querySelector("canvas"), {
+  type: "bar",
+  data: {
+    labels: allPeriods,
+    datasets: [{
+      label: "Avg Time (mins)",
+      data: averages,
+      backgroundColor: "#696A94",
+      borderRadius: 12
+    }]
+  },
+  options: {
+    maintainAspectRatio: false,   // allow custom height
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => {
+            const val = Number(ctx.raw);
+            if (!isFinite(val)) return "-";
+            const d = Math.floor(val / 1440);
+            const h = Math.floor((val % 1440) / 60);
+            const m = Math.floor(val % 60);
+            return `${d}D ${h}H ${m}M`;
+          }
+        }
+      }
+    },
+    scales: { 
+      y: { 
+        beginAtZero: true,
+        grid: { display: false, drawTicks: false }, // 🔹 remove grid lines
+        ticks: { display: false },                  // 🔹 remove tick numbers
+        border: { display: false }                  // 🔹 remove Y axis line
+      },
+      x: {
+        ticks: { font: { size: 12 } },
+        grid: { display: false }                    // 🔹 no vertical grid lines
+      }
+    }
+  }
+});
+ });
 }
+
 
 /* initialize */
 (async ()=>{
@@ -1267,4 +1410,3 @@ function setActiveOffice(o){
 
 </body>
 </html>
-
