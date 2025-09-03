@@ -148,8 +148,32 @@ function updateIndicatorToActive(){
 
 /* offices */
 function computeOffices(){
-  offices = Array.from(new Set(normalized.filter(r=>r._period===activePeriod).map(r=>r._office))).sort();
+  const rows = normalized.filter(r=>r._period === activePeriod);
+  let unique = Array.from(new Set(rows.map(r=>r._office)));
+
+  // Custom order
+  const officeOrder = [
+    "MINISTERS",
+    "SECRETRAIES",
+    "HODS",
+    "COLLECTORS",
+    "JOINT COLLECTORS",
+    "WAITING FOR POSTING"
+  ];
+
+  unique.sort((a, b) => {
+    let ia = officeOrder.indexOf(a);
+    let ib = officeOrder.indexOf(b);
+
+    if (ia === -1) ia = officeOrder.length;  // send unknowns to end
+    if (ib === -1) ib = officeOrder.length;
+
+    return ia - ib;
+  });
+
+  offices = unique;
 }
+
 
 function renderSubTabs(){
   subTabsContainer.innerHTML = '';
@@ -947,7 +971,7 @@ document.getElementById("downloadBtn").addEventListener("click", ()=>{
 /* initialize */
 (async ()=>{
   try{
-    const r = await fetch('employee_report_01.09.25.json',{cache:'no-store'});
+    const r = await fetch('eOffice_Report_02.09.25.json',{cache:'no-store'});
     if(r.ok){
       const json = await r.json();
       if(Array.isArray(json)) loadData(json);
