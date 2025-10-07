@@ -19,7 +19,7 @@ let activePeriod = null;
 let offices = [];
 let activeOffice = null;
 let visibleRows = [];
-let sortState = { key: 'Avg Time (mins)', dir: 'asc' };
+let sortState = { key: 'Composite Performance Score', dir: 'desc' };
 let page = 1;
 let lastFilteredData = [];   // will hold the most recent filtered dataset
 let lastFileName = "export"; // default filename
@@ -45,7 +45,12 @@ const mapKeys = {
   pending: ['Pending Files','Pending','Pending_Files'],
   parked: ['Parked Files','Parked','Parked_Files'],
   avg: ['Avg Time (mins)','Avg Time','AvgTime'],
-  median: ['Median Time (mins)','MedianTime']
+  median: ['Median Time (mins)','MedianTime'],
+  zScore: ['Z-Score'],
+  EfficiencyScore: ['Efficiency Score'],
+  volumeScore: ['Volume Score'],
+  performanceScore: ['Composite Performance Score']
+
 };
 
 /* bucket keys */
@@ -81,6 +86,10 @@ function normalizeRows(rows){
     out._parked = Number(pick(r, mapKeys.parked)) || 0;
     out._avg = Number(pick(r, mapKeys.avg));
     out._median = Number(pick(r, mapKeys.median));
+     out._zScore = Number(pick(r, mapKeys.zScore));
+    out._efficiency = Number(pick(r, mapKeys.EfficiencyScore));
+    out._volume = Number(pick(r, mapKeys.volumeScore));
+    out._composite = Number(pick(r, mapKeys.performanceScore));
 
     out._b = {};
     for(const k in bucketKeys){
@@ -111,6 +120,7 @@ function loadData(rows){
   renderSubTabs();
   setActivePeriod(activePeriod);
 }
+
 
 /* capsule tabs */
 function renderPeriodCapsule(){
@@ -153,12 +163,18 @@ function computeOffices(){
 
   // Custom order
   const officeOrder = [
-    "MINISTERS",
-    "SECRETRAIES",
-    "HODS",
-    "COLLECTORS",
-    "JOINT COLLECTORS",
+    "MINISTER",
+    "SECRETARY",
+    "CADRE-HoD",
+    "NON CADRE HoD",
+    "COLLECTOR",
+    "JOINT COLLECTOR",
+    "SUB COLLECTOR",
+    "MUNICIPAL COMMISSIONER",
+    "ASSISTANT COLLECTOR",
+    "OTHERS",
     "WAITING FOR POSTING"
+
   ];
 
   unique.sort((a, b) => {
@@ -359,7 +375,7 @@ if (k === 'pending_ge90' || k === 'pending_ge120') {
 
 /* table rendering */
 const columns = [
-  'Employee','Avg Time for a file','Median Time for a FIle','Opening Balance','Received Files','Processed Files','Closed Files','Pending Files','Parked Files',
+  'Employee','Avg Time for a file','Median Time for a File','Efficiency Score','Volume Score','Composite Performance Score','Opening Balance','Received Files','Processed Files','Closed Files','Pending Files','Parked Files',
   'Processed ≤1d','Processed ≤2d','Processed ≤3d','Processed ≤1W','Processed ≤1M','Processed >1M',
   'Pending <7Days','Pending ≥7Days','Pending ≥15Days','Pending ≥30Days','Pending ≥60Days','Pending ≥90Days','Pending ≥120Days'
 ];
@@ -392,6 +408,11 @@ function renderTable(rows){
   <td class="col-emp">${escapeHtml(r._employee)}</td>
   <td><data-emp="${r._employee}" data-metric="avg">${formatMinutes(r._avg)}</span></td>
   <td><data-emp="${r._employee}" data-metric="median">${formatMinutes(r._median)}</span></td>
+  <!-- 🔹 New Columns -->
+  
+  <td>${isNaN(r._efficiency) ? "-" : r._efficiency.toFixed(1)}</td>
+  <td>${isNaN(r._volume) ? "-" : r._volume.toFixed(1)}</td>
+  <td>${isNaN(r._composite) ? "-" : r._composite.toFixed(1)}</td>
   <td><span class="clickable" data-emp="${r._employee}" data-metric="opening">${r._opening}</span></td>
   <td><span class="clickable" data-emp="${r._employee}" data-metric="received">${r._received}</span></td>
   <td><span class="clickable" data-emp="${r._employee}" data-metric="processed">${r._processed}</span></td>
@@ -425,10 +446,11 @@ function renderTable(rows){
 function valForKey(row,key){
   switch(key){
     case 'Employee': return row._employee || '';
-    case 'Office_Type': return row._office || '';
-    case 'Cadre_Type': return row._cadre || '';
     case 'Avg Time (mins)': return isNaN(row._avg)?-1:row._avg;
     case 'Median Time (mins)': return isNaN(row._median)?-1:row._median;
+    case 'Efficiency Score': return isNaN(row._efficiency) ? -999 : row._efficiency;
+    case 'Volume Score': return isNaN(row._volume) ? -999 : row._volume;
+    case 'Composite Performance Score': return isNaN(row._composite) ? -999 : row._composite;
     case 'Opening Balance': return row._opening;
     case 'Received Files': return row._received;
     case 'Processed Files': return row._processed;
@@ -438,9 +460,9 @@ function valForKey(row,key){
     case 'Processed ≤1d': return row._b.p1;
     case 'Processed ≤2d': return row._b.p2;
     case 'Processed ≤3d': return row._b.p3;
-    case 'Processed ≤1w': return row._b.p1w;
-    case 'Processed ≤1m': return row._b.p1m;
-    case 'Processed >1m': return row._b.pgt1m;
+    case 'Processed ≤1W': return row._b.p1w;
+    case 'Processed ≤1M': return row._b.p1m;
+    case 'Processed >1M': return row._b.pgt1m;
     case 'Pending <7Days': return row._b.pending_lt7;
     case 'Pending ≥7Days': return row._b.pending_ge7;
     case 'Pending ≥15Days': return row._b.pending_ge15;
@@ -667,16 +689,23 @@ function renderCharts(pageRows) {
     employeesOnPage.includes(r._employee) &&
     (!activeOffice || r._office === activeOffice)
   );
-
+const periodOrder = [
+  "Entire Period",
+  "Last 1 Year",
+  "Last 6 Months",
+  "Last 3 Months",
+  "Last 1 Month"
+];
   // All periods available for this scope
   let allPeriods = [...new Set(scoped.map(r => r._period))];
 
   // 🔹 Move "Entire Period" to the end
   allPeriods.sort((a, b) => {
-    if (a === "Entire Period") return 1;
-    if (b === "Entire Period") return -1;
-    return 0;
-  });
+  const ia = periodOrder.indexOf(a);
+  const ib = periodOrder.indexOf(b);
+  // If not found, push to the end
+  return (ia === -1 ? Infinity : ia) - (ib === -1 ? Infinity : ib);
+});
 
   // Group rows by employee
   const byEmp = {};
@@ -797,7 +826,7 @@ const en = d._endDate;
 
     const state = (d.state||"").toUpperCase();
     const durMins = (st && en) ? (en - st) / 60000 : null; // duration in mins
-    const ageDays = (!en && st) ? Math.floor((now - st)/86400000) : null;
+    const ageDays = (!en && st) ? ((now - st)/86400000).toFixed(1) : null;
 
     switch(metric){
       // ---- main counters ----
@@ -971,7 +1000,7 @@ document.getElementById("downloadBtn").addEventListener("click", ()=>{
 /* initialize */
 (async ()=>{
   try{
-    const r = await fetch('eOffice_Report_02.09.25.json',{cache:'no-store'});
+    const r = await fetch('eOffice_Report_07.10.25.json',{cache:'no-store'});
     if(r.ok){
       const json = await r.json();
       if(Array.isArray(json)) loadData(json);

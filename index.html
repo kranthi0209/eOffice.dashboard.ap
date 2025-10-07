@@ -15,7 +15,7 @@
     <div class="logo-circle">CMO</div>
     <div class="title-block">
       <h1>Chief Minister’s Office Andhra Pradesh<span class="highlight">e-Office KPIs Dashboard</span></h1>
-      <div class="subtitle">📊 Data as on <strong>3rd Sep 2025</strong></div>
+      <div class="subtitle">📊 Data as on <strong>7th October 2025</strong></div>
     </div>
   </div>
 </header>
@@ -45,7 +45,9 @@
         <div class="chips" id="pendingChips"></div>
       </div>
     </section>
-
+<h2 class="Table-heading">
+    Table illustrating the e-Office performance of Ministers & Officers
+  </h2>
     <!-- Table -->
     <div class="table-card animate-pop">
       <div class="table-controls">
@@ -53,47 +55,62 @@
           <input id="searchInput" class="search" placeholder="Search employee..." />
           <select id="pageSize" class="btn" style="border-radius:8px;padding:8px 10px;">
             
-            <option value="25">25 / page</option>
-            <option value="50">50 / page</option><option value="100">100 / page</option>
+            <option value="100">100 / page</option>
+            
           </select>
         </div>
+        <p style="color: #72040d;font-weight: 800; font-family: Segoe UI;">Please Click on the Files Count to See the details of the Files</p>
         <div style="display:flex;gap:8px;align-items:center;font-size: large; font-weight: 900; color:var(--muted)">
           <div id="tableInfo">0 employees</div>
         </div>
       </div>
 
       <div class="table-wrap">
-        <table id="empTable" role="table">
-          <thead>
-            <tr>
-              <th style="width:60px; text-align:center;color: #000007;">S. No.</th>
-              <th data-key="Employee">Employee <span class="sort-ind">↕</span></th>
-              <th data-key="Avg Time (mins)">Avg Time for a File<span class="sort-ind">↕</span></th>
-              <th data-key="Median Time (mins)">Median for a File<span class="sort-ind">↕</span></th>
-              <th data-key="Opening Balance">Opening Balance<span class="sort-ind">↕</span></th>
-              <th data-key="Received Files">Received Files<span class="sort-ind">↕</span></th>
-              <th data-key="Processed Files">Processed Files<span class="sort-ind">↕</span></th>
-              <th data-key="Closed Files">Closed Files<span class="sort-ind">↕</span></th>
-              <th data-key="Pending Files">Pending Files<span class="sort-ind">↕</span></th>
-              <th data-key="Parked Files">Parked Files<span class="sort-ind">↕</span></th>
-              <th data-key="Processed ≤1d">Processed ≤1 D <span class="sort-ind">↕</span></th>
-              <th data-key="Processed ≤2d">Processed ≤2 D <span class="sort-ind">↕</span></th>
-              <th data-key="Processed ≤3d">Processed ≤3 D <span class="sort-ind">↕</span></th>
-              <th data-key="Processed ≤1d">Processed ≤7 D <span class="sort-ind">↕</span></th>
-              <th data-key="Processed ≤1W">Processed ≤30 D <span class="sort-ind">↕</span></th>
-              <th data-key="Processed ≤1M">Processed >30 D <span class="sort-ind">↕</span></th>
-              <th data-key="Pending <7Days">Pending <7 D <span class="sort-ind">↕</span></th>
-              <th data-key="Pending ≥7Days">Pending ≥7 D <span class="sort-ind">↕</span></th>
-              <th data-key="Pending ≥15Days">Pending ≥15 D <span class="sort-ind">↕</span></th>
-              <th data-key="Pending ≥30Days">Pending ≥30 D <span class="sort-ind">↕</span></th>
-              <th data-key="Pending ≥60Days">Pending ≥60 D <span class="sort-ind">↕</span></th>
-              <th data-key="Pending ≥90Days">Pending ≥90 D <span class="sort-ind">↕</span></th>
-              <th data-key="Pending ≥120Days">Pending ≥120 D <span class="sort-ind">↕</span></th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
+  <table id="empTable" role="table">
+    <thead>
+ 
+    <!-- first two columns span two header rows -->
+    <th rowspan="2">S. No.</th>
+    <th rowspan="2">Employee</th>
+
+    <!-- Statistical KPIs (5 columns) -->
+    <th data-key="Avg Time (mins)">Avg Time to process one File <span class="sort-ind">↕</span></th>
+    <th data-key="Median Time (mins)">Median Time to process one File <span class="sort-ind">↕</span></th>
+    <th data-key="Efficiency Score">Efficiency (Speed) Score <span class="sort-ind">↕</span></th>
+    <th data-key="Volume Score">Work Load Score <span class="sort-ind">↕</span></th>
+    <th data-key="Composite Performance Score">Weighted Performance Score <span class="sort-ind">↕</span></th>
+
+    <!-- Basic KPIs (6 columns) -->
+    <th data-key="Opening Balance">Opening Balance <span class="sort-ind">↕</span></th>
+    <th data-key="Received Files">Received Files <span class="sort-ind">↕</span></th>
+    <th data-key="Processed Files">Processed Files <span class="sort-ind">↕</span></th>
+    <th data-key="Closed Files">Closed Files <span class="sort-ind">↕</span></th>
+    <th data-key="Pending Files">Pending Files <span class="sort-ind">↕</span></th>
+    <th data-key="Parked Files">Parked Files <span class="sort-ind">↕</span></th>
+
+    <!-- File Processing KPIs (6 columns) -->
+    <th data-key="Processed ≤1d">Processed ≤1 D <span class="sort-ind">↕</span></th>
+    <th data-key="Processed ≤2d">Processed ≤2 D <span class="sort-ind">↕</span></th>
+    <th data-key="Processed ≤3d">Processed ≤3 D <span class="sort-ind">↕</span></th>
+    <th data-key="Processed ≤1W">Processed ≤7 D <span class="sort-ind">↕</span></th>
+    <th data-key="Processed ≤1M">Processed ≤30 D <span class="sort-ind">↕</span></th>
+    <th data-key="Processed >1M">Processed >30 D <span class="sort-ind">↕</span></th>
+
+    <!-- File Pendency KPIs (7 columns) -->
+    <th data-key="Pending <7Days">Pending <7 D <span class="sort-ind">↕</span></th>
+    <th data-key="Pending ≥7Days">Pending ≥7 D <span class="sort-ind">↕</span></th>
+    <th data-key="Pending ≥15Days">Pending ≥15 D <span class="sort-ind">↕</span></th>
+    <th data-key="Pending ≥30Days">Pending ≥30 D <span class="sort-ind">↕</span></th>
+    <th data-key="Pending ≥60Days">Pending ≥60 D <span class="sort-ind">↕</span></th>
+    <th data-key="Pending ≥90Days">Pending ≥90 D <span class="sort-ind">↕</span></th>
+    <th data-key="Pending ≥120Days">Pending ≥120 D <span class="sort-ind">↕</span></th>
+  </tr>
+</thead>
+
+    <tbody></tbody>
+  </table>
+</div>
+
 
       <div class="pager" id="pager"></div>
     </div>
